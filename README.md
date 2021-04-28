@@ -4,9 +4,7 @@
 
 [Danny Hanford](https://github.com/dannyhannyford "Danny Hanford")
 
-
-
-[Janet Zheng]( "Janet Zheng")
+[Janet Zheng](https://github.com/jzhengcode "Janet Zheng")
 
 [Adam Whitman](https://github.com/emagdaeh "Adam Whitman")
 
@@ -39,7 +37,6 @@ Some unexpected challenges included:
 </ul>
 
 # How does the app work?
-
 
 
 # Workflow and Key Lessons
