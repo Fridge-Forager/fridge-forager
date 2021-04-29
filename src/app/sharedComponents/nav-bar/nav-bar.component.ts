@@ -20,11 +20,13 @@ export class NavBarComponent implements OnInit {
     e.preventDefault();
   }
 
-  openModal(id: string) {
+  openModal(id: string, e:any) {
+    e.preventDefault();
     this.modalService.open(id);
 }
 
-  closeModal(id: string) {
+  closeModal(id: string, e:any) {
+    e.preventDefault();
     this.modalService.close(id);
 }
 
