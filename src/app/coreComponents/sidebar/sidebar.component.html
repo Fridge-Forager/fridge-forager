@@ -1,17 +1,18 @@
 <div>
-  <div>
-    <h3 class="title">Add Ingredients:</h3>
-    <form class="formDiv" (submit)="addItem()">
+  <form class="formDiv" [formGroup]="addIngredientForm" (submit)="addItem()">
+    <div class="form-group">
+      <label for="addIngredient">Add Ingredients: </label>
       <input
         type="text"
-        name="addIngredient"
+        id="addIngredient"
         placeholder="Ex: Mushrooms"
-        class="inputForm"
+        class="form-control"
+        formControlName="ingredient"
         [(ngModel)]="inputIngredient"
       />
-      <input type="submit" value="Add Item" class="addIngredientBtn" [disabled]="!form.valid"/>
-    </form>
-  </div>
+    </div>
+    <button class="addIngredientBtn">Add Item</button>
+  </form>
 
   <br />
 

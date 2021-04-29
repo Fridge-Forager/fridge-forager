@@ -1,6 +1,6 @@
 import { Ingredient } from './models/Ingredients';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +9,22 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 
 export class SidebarComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit(): void {
+    this.ingredients = []
+    // this.form = new FormGroup({
+    //   inputIngredient: new FormControl(this.inputIngredient, [
+    //     Validators.required
+    //   ])
+    // })
+  }
+
   ingredients!: Ingredient[];
   inputIngredient: string = '';
-  form!: FormGroup;
+  addIngredientForm = new FormGroup({
+    ingredintToAdd: new FormControl('', Validators.required)
+  })
 
   addItem() {
     this.ingredients.push({
@@ -27,17 +40,6 @@ export class SidebarComponent implements OnInit {
 
   search() {
     console.log(this.ingredients);
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.ingredients = [],
-    this.form = new FormGroup({
-      inputIngredient: new FormControl(this.inputIngredient, [
-        Validators.required
-      ])
-    })
   }
 
 }
