@@ -1,6 +1,6 @@
 import { Ingredient } from './models/Ingredients';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
@@ -25,12 +25,18 @@ export class SidebarComponent implements OnInit {
     this.ingredients = this.ingredients.filter((val, i) => i !== id);
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  search() {
+    console.log(this.ingredients);
+  }
+
+  constructor() { }
 
   ngOnInit(): void {
     this.ingredients = [],
-    this.form = this.formBuilder.group({
-      addIngredient: [null, Validators.required]
+    this.form = new FormGroup({
+      inputIngredient: new FormControl(this.inputIngredient, [
+        Validators.required
+      ])
     })
   }
 
