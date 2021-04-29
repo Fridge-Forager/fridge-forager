@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ModalService } from '../../modal.service';
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -9,7 +11,7 @@ export class NavBarComponent implements OnInit {
   userIcon="https://fridgeforager.s3-us-west-2.amazonaws.com/user.png";
   favoriteIcon="https://fridgeforager.s3-us-west-2.amazonaws.com/favorite-heart-outline-button.png";
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +20,14 @@ export class NavBarComponent implements OnInit {
     e.preventDefault();
   }
 
-  openLogin(e:any) {
+  openModal(id: string, e:any) {
     e.preventDefault();
-  }
+    this.modalService.open(id);
+}
+
+  closeModal(id: string, e:any) {
+    e.preventDefault();
+    this.modalService.close(id);
+}
+
 }
