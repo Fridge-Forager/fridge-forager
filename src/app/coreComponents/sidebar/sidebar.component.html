@@ -1,7 +1,7 @@
 <div>
   <div>
-    {{ title }}
-    <form (submit)="addItem()">
+    <h3 class="title">Add Ingredients:</h3>
+    <form class="formDiv" (submit)="addItem()">
       <input
         type="text"
         name="addIngredient"
@@ -17,7 +17,7 @@
 
   <div>
     <div class="ingredientsList" *ngFor="let ingredient of ingredients; let i = index;">
-      <div class="content">{{ingredient.content}}</div>
+      <div class="foodItem">{{ingredient.content}}</div>
       <button class="removeBtn" (click)="removeItem(i)">Remove Item</button>
     </div>
   </div>
