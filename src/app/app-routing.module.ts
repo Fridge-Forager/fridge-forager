@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarComponent } from './coreComponents/sidebar/sidebar.component';
-import { NavBarComponent } from './sharedComponents/nav-bar/nav-bar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FavoritesDisplayComponent } from './favorites-display/favorites-display.component';
 
 const routes: Routes = [
-  { path: '', component: SidebarComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'favorites', component: FavoritesDisplayComponent },
 ];
 
 @NgModule({
