@@ -5,11 +5,12 @@
       <input
         type="text"
         name="addIngredient"
+        id="item"
         placeholder="Ex: Mushrooms"
         class="inputForm"
         [(ngModel)]="inputIngredient"
       />
-      <input type="submit" value="Add Item" class="addIngredientBtn"/>
+      <input type="submit" value="Add Item" class="addIngredientBtn" [disabled]="!form.valid"/>
     </form>
   </div>
 

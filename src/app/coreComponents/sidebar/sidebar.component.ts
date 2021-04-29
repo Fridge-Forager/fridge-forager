@@ -1,5 +1,6 @@
 import { Ingredient } from './models/Ingredients';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   ingredients!: Ingredient[];
   inputIngredient: string = '';
+  form!: FormGroup;
 
   addItem() {
     this.ingredients.push({
@@ -23,10 +25,13 @@ export class SidebarComponent implements OnInit {
     this.ingredients = this.ingredients.filter((val, i) => i !== id);
   }
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.ingredients = []
+    this.ingredients = [],
+    this.form = this.formBuilder.group({
+      addIngredient: [null, Validators.required]
+    })
   }
 
 }
