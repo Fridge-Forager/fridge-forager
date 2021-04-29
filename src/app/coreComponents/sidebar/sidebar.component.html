@@ -1,1 +1,13 @@
-<p>sidebar works!</p>
+<div>
+  <div>
+    <label for="ingredient">Ingredients: </label>
+    <input type="text" [(ngModel)]="ingredient" placeholder="Ex: Mushrooms"/>
+    <button class="addIngredientBtn" (click)="onClick()">Add Ingredient</button>
+  </div>
+
+  <br />
+
+  <ul class="ingredientsList">
+    <li *ngFor="let ingredient of ingredients">{{ingredient.name}}</li>
+  </ul>
+</div>
