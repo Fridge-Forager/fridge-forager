@@ -3,15 +3,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from '../../modal.service';
 import { LocalStorageService } from '../../local-storage.service';
 import { Local } from 'protractor/built/driverProviders';
-import {UserObject} from '../../interfaces/userObject';
+import { UserObject } from '../../interfaces/userObject';
 
 @Component({
-  selector: 'app-login-modal',
-  templateUrl: './login-modal.component.html',
-  styleUrls: ['./login-modal.component.scss']
+  selector: 'app-register-modal',
+  templateUrl: './register-modal.component.html',
+  styleUrls: ['./register-modal.component.scss']
 })
-export class LoginModalComponent implements OnInit {
-  loginForm!: FormGroup;
+export class RegisterModalComponent implements OnInit {
+  registerForm!: FormGroup;
   userId: string = '';
   user: string = '';
   pass: string = '';
@@ -23,14 +23,14 @@ export class LoginModalComponent implements OnInit {
   }
 
   initRegForm() {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
-  get username(): any {return this.loginForm.get('username'); }
-  get password(): any {return this.loginForm.get('password'); }
+  get username(): any {return this.registerForm.get('username'); }
+  get password(): any {return this.registerForm.get('password'); }
 
   clearUsername() { this.username.setValue(''); }
   clearPassword() { this.password.setValue(''); }
@@ -40,35 +40,23 @@ export class LoginModalComponent implements OnInit {
     this.modalService.open(id);
   }
 
-  closeModal(id: string, e:any) {
-    e.preventDefault();
+  closeModal(id: string) {
     this.modalService.close(id);
   }
 
-  openRegisterModal() {
-    this.modalService.close('login-modal');
-    this.modalService.open('register-modal');
-  }
-
-  setUserObject()userObject:UserObject {
-    let temp = this.localStorageService.getItem('user');
-    userObject.pass = this.password.value;
+  setUserObject(userObject: UserObject) {
+    // generate UUid
+    userObject.userId = '';
     userObject.user = this.username.value;
+    userObject.pass = this.password.value;
   }
 
   onSubmit() {
-    
-    this.userObject.user;
-    this.userObject.pass;
-    this.userObject.userId;
+    this.setUserObject(this.userObject);
+    this.localStorageService.setItem('user', JSON.stringify(this.userObject));
     this.clearPassword();
     this.clearUsername();
+    this.closeModal('register-modal');
   }
 
 }
-// const jsonValue = JSON.stringify(value);
-
-/**
- * const jsonValue = await AsyncStorage.getItem("user");
-		return jsonValue !== null ? JSON.parse(jsonValue) : null;
- */

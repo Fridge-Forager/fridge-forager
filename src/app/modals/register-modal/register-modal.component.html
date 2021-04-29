@@ -1,5 +1,5 @@
-<div>Log in to Fridge Forager!</div>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div>Register</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="card">
     <label class="card-title" for="username">
       Username
@@ -14,13 +14,7 @@
       <input class="card-input" type="text" formControlName="password" id="password">
     </div>
     <button class="confirm-button"type="submit" >
-      log in
+      Register
     </button>
     </div>
 </form>
-<div>
-  <button (click)="openRegisterModal()">Register</button>
-</div>
-<modal id="register-modal">
-  <app-register-modal></app-register-modal>
-</modal>
