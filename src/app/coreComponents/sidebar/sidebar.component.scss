@@ -1,0 +1,38 @@
+.inputForm {
+  display: block;
+	width: 20%;
+	padding: 10px 15px;
+	appearance: none;
+	border: none;
+	background-color: #F3F3F3;
+	margin-top: 15px;
+	font-size: 20px;
+	outline: none;
+}
+
+.addIngredientBtn {
+  display: inline-block;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: 4px;
+  text-align: center;
+  padding: 5px;
+  margin: 3px;
+}
+
+.removeBtn {
+  display: inline-block;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: 4px;
+  text-align: center;
+  padding: 5px;
+  margin: 3px;
+}
+
+.ingredientsList {
+  display: flex;
+	padding: 10px 15px;
+	background-color: #FFF;
+	border-bottom: 1px solid #DDD;
+}
