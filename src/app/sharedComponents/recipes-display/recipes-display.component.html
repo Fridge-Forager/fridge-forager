@@ -1,5 +1,7 @@
 <p>recipes-display works!</p>
-<a href="{{recipe.url}}">
-  <img src="{{recipe.image}}" />
-  <p>{{recipe.title}}</p>
-</a>
+<div *ngFor="let recipe of recipes">
+  <a href="{{recipe.url}}">
+    <img src="{{recipe.image}}" />
+    <p>{{recipe.title}}</p>
+  </a>
+</div>
