@@ -11,14 +11,21 @@ import { RecipeCard } from './recipe-card';
 })
 export class RecipesDisplayComponent implements OnInit {
   recipes!: RecipeCard[];
+  recipeIndex = 0;
+
   constructor(private recipeService: RecipeService) { }
 
-  getRecipes(): void {
+  getRecipes(index: number): void {
     this.recipeService.getRecipes()
-      .then(recipes => this.recipes = recipes)
+      .then(recipes => this.recipes = recipes.slice(index, 3))
   }
   ngOnInit(): void {
-    this.getRecipes();
+    console.log(this.recipeIndex)
+    this.getRecipes(this.recipeIndex)
   }
 
+  onRandomClick(): void {
+    this.recipeIndex += 3;
+    console.log(this.recipeIndex)
+  }
 }
