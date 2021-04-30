@@ -5,6 +5,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IngredientService } from 'src/app/ingredient.service';
 import { Subscription } from 'rxjs';
+import { APIKEY } from '../../sharedComponents/recipes-display/.APIKEY';
 // import 'rxjs/add/operator/map';
 
 @Component({
@@ -76,7 +77,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
 
     let params = new HttpParams().set('ingredients', `${strOfIngredients}`);
-    let headers = new HttpHeaders().set('X-Rapidapi-Key', '7b2eb94882mshe8a3baeea97371dp197594jsn74ae9c8f01ac');
+    let headers = new HttpHeaders().set('apiKey', `${APIKEY}`);
 
     this.recipes = this.http.get(this.ROOT_URL, { params /*, headers*/ });
 
