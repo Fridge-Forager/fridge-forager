@@ -65,13 +65,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     let params = new HttpParams().set('id', '1003464');
     let headers = new HttpHeaders().set('X-Rapidapi-Key', '7b2eb94882mshe8a3baeea97371dp197594jsn74ae9c8f01ac');
 
-    this.recipes = this.http.get(this.ROOT_URL + '/recipes/1003464/ingredientWidget', { params, headers })
+    this.recipes = this.http.get(this.ROOT_URL + '/recipes/1003464/ingredientWidget', { params, headers });
 
     // .map(recipe => recipe.content)
   }
 
 
-  
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
