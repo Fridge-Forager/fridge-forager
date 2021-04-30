@@ -1,10 +1,11 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
 
 import { RecipeService } from './recipe.service';
 import { RecipeCard } from './recipe-card';
-import { Observable } from 'rxjs';
-import { Recipe } from '../recipe.model';
+import { RECIPES } from './mock-recipes';
+import { APIKEY } from './.APIKEY';
+import { HttpClient } from '@angular/common/http';
+
 
 
 @Component({
@@ -15,25 +16,42 @@ import { Recipe } from '../recipe.model';
 })
 
 export class RecipesDisplayComponent implements OnInit {
-  recipes!: RecipeCard[];
+  recipes?: RecipeCard[] = [];
   recipeIndex = 0;
-  
-  constructor(private recipeService: RecipeService) { }
+  items: any = [];
+  private _url: string = ' https://api.spoonacular.com/recipes/'
+  // constructor(private recipeService: RecipeService) { }
   // constructor(private store: Store) {
   //   this.recipes$ = this.store.select(state => state.recipes.recipes)
   // }
+  constructor(private http: HttpClient) {}
 
   getRecipes(index: number): void {
-    this.recipeService.getRecipes()
-      .then(recipes => this.recipes = recipes.slice(index, 3))
+    // this.recipeService.getRecipes()
+    //   .then(recipes => this.recipes = recipes.slice(index, 3))
+    let items:any = [];
+    for (let recipeId of RECIPES) {
+      let url = this._url + 
+        recipeId + 
+        '/information?apiKey=' +
+        APIKEY + 
+        '&includeNutrition=false';
+      
+      this.http.get(url).toPromise()
+        .then(data => {
+          this.items.push(data);
+        })
+    }
+
+    console.log(this.items)
+    
   }
 
   ngOnInit(): void {
-    this.getRecipes(this.recipeIndex)
+    this.getRecipes(5);
   }
 
   onRandomClick(): void {
     this.recipeIndex += 3;
-
   }
 }
