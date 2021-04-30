@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
   //   return this.http.get<Ingredient>(`<STUFF GOES HERE INCLUDING ${ingredients}>`);
   // }
   search() {
-    console.log('placeholder');
+    console.log(this.ingredients);
   }
 
   constructor(private http: HttpClient) { } //<-- this seems to be necessary
