@@ -11,12 +11,12 @@ export class IngredientService {
 
   constructor() { }
 
-  updateIngredientData(data:any) {
+  updateIngredients(data:any) {
     this.ingredientSource.next(data);
   }
 
-  changeIngredients(ingredients: []) {
-    this.ingredientSource.next([...ingredients]);
+  getIngredients(){
+    return this.ingredientSource.getValue();
   }
 
 }

@@ -1,5 +1,5 @@
 import { Ingredient } from './models/Ingredients';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,9 +12,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sidebar.component.scss']
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   ingredients!: Ingredient[];
+
   addIngredient: string = '';
   ingredientForm = new FormGroup({
     Name: new FormControl('')
@@ -34,19 +35,23 @@ export class SidebarComponent implements OnInit {
   //   url: '/ingredients' + $.param({id: ids})
   // )
 
-  constructor(private http: HttpClient, private ingredientService: IngredientService) { } //<-- this seems to be necessary
+  constructor(private http: HttpClient, private ingredientData: IngredientService) { } //<-- this seems to be necessary
+
+  ngOnInit(): void {
+    this.ingredients = []
+    this.subscription = this.ingredientData.currentIngredients.subscribe(ingredients => this.ingredients = ingredients)
+  }
 
   addItem() {
-    this.ingredients.push({
-      content: this.addIngredient
-    })
+    this.ingredients = [...this.ingredients, { content: this.addIngredient }];
 
     this.addIngredient = '';
-    console.log('sidebar.component.ts -- this.subscription:', this.subscription);
+    this.ingredientData.updateIngredients(this.ingredients);
   }
 
   removeItem(id: number) {
     this.ingredients = this.ingredients.filter((val, i) => i !== id);
+    this.ingredientData.updateIngredients(this.ingredients);
   }
 
   // search(ingredients: string): Observable<Ingredient> {
@@ -57,10 +62,7 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.ingredients = []
-    this.subscription = this.ingredientService.currentIngredients.subscribe(ingredients => this.ingredients = ingredients)
-  }
+  
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
