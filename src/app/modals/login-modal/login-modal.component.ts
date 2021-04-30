@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from '../../modal.service';
 import { LocalStorageService } from '../../local-storage.service';
-import {UserObject} from '../../interfaces/userObject';
+import {UserObject} from '../interfaces/userObject';
 
 @Component({
   selector: 'app-login-modal',

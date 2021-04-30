@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from '../../modal.service';
 import { LocalStorageService } from '../../local-storage.service';
 import { Local } from 'protractor/built/driverProviders';
-import { UserObject } from '../../interfaces/userObject';
+import { UserObject } from '../interfaces/userObject';
 
 @Component({
   selector: 'app-register-modal',
