@@ -46,7 +46,7 @@ export class RegisterModalComponent implements OnInit {
 
   setUserObject(userObject: UserObject) {
     // generate UUid
-    userObject.userId = '';
+    userObject.userId = 'TEMP UUID USERID VALUE';
     userObject.user = this.username.value;
     userObject.pass = this.password.value;
   }
