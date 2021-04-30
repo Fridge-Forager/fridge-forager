@@ -9,29 +9,19 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 
 export class SidebarComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit(): void {
-    this.ingredients = []
-    // this.form = new FormGroup({
-    //   inputIngredient: new FormControl(this.inputIngredient, [
-    //     Validators.required
-    //   ])
-    // })
-  }
-
   ingredients!: Ingredient[];
-  inputIngredient: string = '';
-  addIngredientForm = new FormGroup({
-    ingredintToAdd: new FormControl('', Validators.required)
-  })
+  addIngredient: string = '';
+  ingredientForm = new FormGroup({
+    Name: new FormControl('')
+  });
+
 
   addItem() {
     this.ingredients.push({
-      content: this.inputIngredient
+      content: this.addIngredient
     })
 
-    this.inputIngredient = '';
+    this.addIngredient = '';
   }
 
   removeItem(id: number) {
@@ -41,5 +31,12 @@ export class SidebarComponent implements OnInit {
   search() {
     console.log(this.ingredients);
   }
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.ingredients = []
+  }
+
 
 }

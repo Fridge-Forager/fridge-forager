@@ -1,17 +1,19 @@
 <div>
-  <form class="formDiv" [formGroup]="addIngredientForm" (submit)="addItem()">
+  <form class="formDiv" #userForm="ngForm" [formGroup]="ingredientForm" (ngSubmit)="addItem()">
     <div class="form-group">
       <label for="addIngredient">Add Ingredients: </label>
       <input
         type="text"
         id="addIngredient"
+        name="addIngredient"
         placeholder="Ex: Mushrooms"
-        class="form-control"
-        formControlName="ingredient"
-        [(ngModel)]="inputIngredient"
+        class="form"
+        formControlName="Name"
+        [(ngModel)]="addIngredient"
+        required
       />
     </div>
-    <button class="addIngredientBtn">Add Item</button>
+    <button [disabled]="!userForm.form.valid" class="addIngredientBtn">Add Item</button>
   </form>
 
   <br />
