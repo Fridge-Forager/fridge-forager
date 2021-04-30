@@ -1,11 +1,16 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-
-import { RecipeService } from './recipe.service';
-import { RecipeCard } from './recipe-card';
 import { RECIPES } from './mock-recipes';
 import { APIKEY } from './.APIKEY';
 import { HttpClient } from '@angular/common/http';
 
+import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+
+import { RecipeService } from './recipe.service';
+import { RecipeCard } from './recipe-card';
+import { Observable, Subscription } from 'rxjs';
+import { Recipe } from '../recipe.model';
+import { IngredientService } from 'src/app/ingredient.service';
+import { Ingredient } from '../../coreComponents/sidebar/models/Ingredients';
 
 
 @Component({
@@ -21,10 +26,20 @@ export class RecipesDisplayComponent implements OnInit {
   items: any = [];
   private _url: string = ' https://api.spoonacular.com/recipes/'
   // constructor(private recipeService: RecipeService) { }
+
+  subscription!: Subscription;
+  ingredients!: Ingredient[];
+  
+  constructor(private recipeService: RecipeService, private ingredientData: IngredientService, private http: HttpClient) { }
   // constructor(private store: Store) {
   //   this.recipes$ = this.store.select(state => state.recipes.recipes)
   // }
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.subscription = this.ingredientData.currentIngredients.subscribe(ingredients => this.ingredients = ingredients)
+    this.getRecipes(this.recipeIndex)
+  }
 
   getRecipes(index: number): void {
     // this.recipeService.getRecipes()
@@ -47,11 +62,11 @@ export class RecipesDisplayComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-    this.getRecipes(5);
-  }
-
   onRandomClick(): void {
     this.recipeIndex += 3;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

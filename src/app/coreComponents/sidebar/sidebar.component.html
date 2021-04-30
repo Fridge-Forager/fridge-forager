@@ -30,4 +30,7 @@
 
 <div>
   <button class="searchBtn" (click)="search()">Find Recipes</button>
+  <div *ngIf="let recipe of recipes | async">
+    {{recipe | json}}
+  </div>
 </div>

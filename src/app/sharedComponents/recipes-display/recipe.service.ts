@@ -7,24 +7,24 @@ import { RecipeCard } from './recipe-card';
 import { RECIPECARDS } from './mock-recipes';
 import { HttpClient } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { IngredientService } from 'src/app/ingredient.service';
+import { Ingredient } from '../../coreComponents/sidebar/models/Ingredients';
+import { Subscription } from 'rxjs';
 
 @Injectable()
 
 export class RecipeService {
   private _url: string = ' https://api.spoonacular.com/recipes/'
   // constructor(private http: HttpClient) {}
-  constructor() {}
-  getRecipes(): Promise<RecipeCard[]> {
-    // const cards: RecipeCard[] = {};
+  ingredients!: Ingredient[];
+  subscription: Subscription;
 
-    // for (let recipeId of RECIPES) {
-    //   let url = this._url + 
-    //     recipeId + 
-    //     '/information?apiKey=' +
-    //     APIKEY + 
-    //     '&includeNutrition=false';
-    //   this.http.get(url).toPromise()
-    // }
+  constructor(private ingredientData: IngredientService) { 
+    // this.ingredients is connected to the ingredient Service
+    this.subscription = this.ingredientData.currentIngredients.subscribe(ingredients => this.ingredients = ingredients);
+  }
+  getRecipes(): Promise<RecipeCard[]> {
+    let ingredientNamesArray = this.ingredients.map(e => e.content);
     return Promise.resolve(RECIPECARDS);
   }
 }
