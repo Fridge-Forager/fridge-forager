@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IngredientService } from 'src/app/ingredient.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 
 export class SidebarComponent implements OnInit {
+  subscription!: Subscription;
   ingredients!: Ingredient[];
   addIngredient: string = '';
   ingredientForm = new FormGroup({
@@ -31,6 +34,7 @@ export class SidebarComponent implements OnInit {
   //   url: '/ingredients' + $.param({id: ids})
   // )
 
+  constructor(private http: HttpClient, private ingredientService: IngredientService) { } //<-- this seems to be necessary
 
   addItem() {
     this.ingredients.push({
@@ -38,6 +42,7 @@ export class SidebarComponent implements OnInit {
     })
 
     this.addIngredient = '';
+    console.log('sidebar.component.ts -- this.subscription:', this.subscription);
   }
 
   removeItem(id: number) {
@@ -51,10 +56,14 @@ export class SidebarComponent implements OnInit {
     console.log('placeholder');
   }
 
-  constructor(private http: HttpClient) { } //<-- this seems to be necessary
 
   ngOnInit(): void {
     this.ingredients = []
+    this.subscription = this.ingredientService.currentIngredients.subscribe(ingredients => this.ingredients = ingredients)
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 
