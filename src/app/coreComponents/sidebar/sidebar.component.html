@@ -1,17 +1,20 @@
 <div>
-  <div>
-    <h3 class="title">Add Ingredients:</h3>
-    <form class="formDiv" (submit)="addItem()">
+  <form class="formDiv" #userForm="ngForm" [formGroup]="ingredientForm" (ngSubmit)="addItem()">
+    <div class="form-group">
+      <label for="addIngredient">Add Ingredients: </label>
       <input
         type="text"
+        id="addIngredient"
         name="addIngredient"
         placeholder="Ex: Mushrooms"
-        class="inputForm"
-        [(ngModel)]="inputIngredient"
+        class="form"
+        formControlName="Name"
+        [(ngModel)]="addIngredient"
+        required
       />
-      <input type="submit" value="Add Item" class="addIngredientBtn"/>
-    </form>
-  </div>
+    </div>
+    <button [disabled]="!userForm.form.valid" class="addIngredientBtn">Add Item</button>
+  </form>
 
   <br />
 
@@ -21,4 +24,10 @@
       <button class="removeBtn" (click)="removeItem(i)">Remove Item</button>
     </div>
   </div>
+</div>
+
+<br />
+
+<div>
+  <button class="searchBtn" (click)="search()">Find Recipes</button>
 </div>

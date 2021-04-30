@@ -4,13 +4,7 @@
   background-color: #e1f1dd;
 }
 
-.title {
-  font-weight: 900;
-  font-size: larger;
-  background-color: #e1f1dd;
-}
-
-.inputForm {
+.form {
   justify-content: flex-start;
 	width: 100%;
 	padding: 10px 15px;
@@ -65,4 +59,12 @@
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-// other color: #cdc7be
+.searchBtn{
+  justify-content: flex-start;
+  background-color: #87a7b3;
+  border-radius: 10px;
+  border: 4px;
+  text-align: center;
+  padding: 5px;
+  margin: 3px;
+}
