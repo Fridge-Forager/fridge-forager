@@ -19,7 +19,7 @@ export class RecipeService {
   ingredients!: Ingredient[];
   subscription: Subscription;
 
-  constructor(private ingredientData: IngredientService) { 
+  constructor(private ingredientData: IngredientService) {
     // this.ingredients is connected to the ingredient Service
     this.subscription = this.ingredientData.currentIngredients.subscribe(ingredients => this.ingredients = ingredients);
   }

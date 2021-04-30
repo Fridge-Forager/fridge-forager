@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   //   method: 'GET',
   //   url: '/ingredients' + $.param({id: ids})
   // )
-  ROOT_URL = 'https://api.spoonacular.com/recipes/complexSearch';
+  ROOT_URL = 'https://api.spoonacular.com/recipes/findByIngredients';
   recipes!: Observable<any>;
 
   constructor(private http: HttpClient, private ingredientData: IngredientService) { } //<-- this seems to be necessary
@@ -62,7 +62,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
   // }
   search() {
     // console.log(this.ingredients);
-    let params = new HttpParams().set('query', 'this.ingredients[0]');
+    let strOfIngredients = ''
+
+    for (let i = 0; i < this.ingredients.length; i++) {
+      if (i === this.ingredients.length - 1) {
+        strOfIngredients += this.ingredients[i].content;
+      } else {
+        strOfIngredients += this.ingredients[i].content + ', ';
+      }
+    }
+
+    console.log('strOfIngredients: ', strOfIngredients);
+
+
+    let params = new HttpParams().set('ingredients', `${strOfIngredients}`);
     let headers = new HttpHeaders().set('X-Rapidapi-Key', '7b2eb94882mshe8a3baeea97371dp197594jsn74ae9c8f01ac');
 
     this.recipes = this.http.get(this.ROOT_URL, { params /*, headers*/ });
