@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FavoritesDisplayComponent } from './favorites-display/favorites-display.component';
 import { ModalComponent } from './modals/modal/modal.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
+import { RecipeState } from './sharedComponents/recipe.state'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,11 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsModule.forRoot([
+      RecipeState
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
