@@ -27,3 +27,5 @@ export const RECIPECARDS: RecipeCard[] = [
     image: "https://spoonacular.com/recipeImages/716425-240x150.jpg"
   }
 ]
+
+export const RECIPES = ['716420', '716421','716422','716423','716424']
