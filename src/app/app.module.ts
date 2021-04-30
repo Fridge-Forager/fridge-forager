@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { NgxsModule } from '@ngxs/store';
 // import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
@@ -33,6 +34,7 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
