@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FavoritesDisplayComponent } from './favorites-display/favorites-display.component';
 import { ModalComponent } from './modals/modal/modal.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
+import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
     FavoritesDisplayComponent,
     ModalComponent,
     LoginModalComponent,
+    RegisterModalComponent,
   ],
   imports: [
     FormsModule,
