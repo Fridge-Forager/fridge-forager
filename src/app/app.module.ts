@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
-import { NgxsModule } from '@ngxs/store';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
+// import { NgxsModule } from '@ngxs/store';
+// import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
+// import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin'
 // import { ModalModule } from './sharedComponents/modal';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +17,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FavoritesDisplayComponent } from './favorites-display/favorites-display.component';
 import { ModalComponent } from './modals/modal/modal.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
-import { RecipeState } from './sharedComponents/recipe.state'
+
+// import { RecipeState } from './sharedComponents/recipe.state'
+
+import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +32,19 @@ import { RecipeState } from './sharedComponents/recipe.state'
     FavoritesDisplayComponent,
     ModalComponent,
     LoginModalComponent,
+    RegisterModalComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot(),
-    NgxsModule.forRoot([
-      RecipeState
-    ])
+    // NgxsReduxDevtoolsPluginModule.forRoot(),
+    // NgxsLoggerPluginModule.forRoot(),
+    // NgxsModule.forRoot([
+    //   RecipeState
+    // ])
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

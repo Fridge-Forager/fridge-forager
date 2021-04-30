@@ -34,7 +34,6 @@ export class RecipesDisplayComponent implements OnInit {
 
   onRandomClick(): void {
     this.recipeIndex += 3;
-    
-    console.log(this.recipeIndex)
+
   }
 }
