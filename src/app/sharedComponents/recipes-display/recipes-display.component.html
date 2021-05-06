@@ -1,0 +1,13 @@
+<div class="recipesDisplay">
+  <div class="recipes">
+    <div class="recipeCards" *ngFor="let recipe of recipes">
+      <div class="card">
+        <a href="{{recipe.url}}">
+          <img class="recipeImage" src="{{recipe.image}}" />
+          <div class="recipeTitle">{{recipe.title}}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <button class="randomBtn" (click)="onRandomClick()">Shuffle Recipes</button>
+</div>

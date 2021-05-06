@@ -1,0 +1,20 @@
+<div>Register</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <label class="card-title" for="username">
+      Username
+    </label>  
+    <div class="card-input-container">
+      <input class="card-input" type="text" formControlName="username" id="username">
+    </div>
+    <label class="card-title" for="password">
+      Password
+    </label>  
+    <div class="card-input-container">
+      <input class="card-input" type="text" formControlName="password" id="password">
+    </div>
+    <button class="confirm-button"type="submit" >
+      Register
+    </button>
+    </div>
+</form>

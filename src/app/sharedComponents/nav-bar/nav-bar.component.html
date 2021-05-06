@@ -1,0 +1,20 @@
+<div class='navbar'>
+  Fridge Forager
+  <input 
+  type="image" 
+  [src]="favoriteIcon" 
+  class="nav-button"
+  (click)="openFavorites($event)"  
+/>
+<input 
+  type="image" 
+  [src]="userIcon" 
+  class="nav-button"
+  (click)="openModal('login-modal', $event)"  
+/>
+<modal id="login-modal">
+  <app-login-modal></app-login-modal>
+</modal>
+</div>
+
+
